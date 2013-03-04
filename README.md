@@ -29,7 +29,7 @@ Allow your app to receive notifications
     <!-- This app has permission to register and receive message -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-And in the same file, inside your <application> element, add a receiver:
+And in the same file, inside your `<application>` element, add a receiver:
 
         <!--
           BroadcastReceiver that will receive intents from GCM
