@@ -1,6 +1,6 @@
 # Notificare Push Library for Android Apps
 
-## How to include
+## Configuring your app to use Notificare Push
 
 First, download the NotificarePushLib-x.y.z.jar to the /libs folder of your project.
 
@@ -55,3 +55,38 @@ And in the same file, inside your `<application>` element, add a receiver:
         <receiver android:name="com.mycompany.myproject.receivers.IntentReceiver" />
 
 Where com.mycompany.myproject is of course the namespace of your app
+
+## Handling registrations and push notifications
+
+Create a class com.mycompany.myproject.receivers.IntentReceiver
+
+	public class IntentReceiver extends BaseIntentReceiver {
+		        
+	        @Override
+	        public void onNotificationReceived(String alert, String notificationId, Bundle extras) {
+	            	onNotificationOpened(alert, notificationId, extras);
+	        }
+	
+	        @Override
+	        public void onNotificationOpened(String alert, String notificationId, Bundle extras) {
+	            Intent launch = new Intent(Intent.ACTION_MAIN);
+	            launch.setClass(Notificare.shared().getApplicationContext(), MyMainActivity.class);
+	            launch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	  
+	            Notificare.shared().getApplicationContext().startActivity(launch);
+	        }
+	
+			@Override
+			public void onRegistrationFinished(String deviceId) {
+				try {
+			        //Get the preferences
+					Context ctx = Notificare.shared().getApplicationContext();
+					SharedPreferences prefs = ctx.getSharedPreferences("myproject", Context.MODE_PRIVATE);
+	
+		            Notificare.shared().registerDevice(deviceId, prefs.getString("userId", null), prefs.getString("userName",  null));
+	
+				} catch (NameNotFoundException e) {
+					// Oops
+				}
+			}	
+	}
