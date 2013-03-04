@@ -2,9 +2,9 @@
 
 ## Configuring your app to use Notificare Push
 
-First, download the NotificarePushLib-x.y.z.jar to the /libs folder of your project.
+First, download the `NotificarePushLib-x.y.z.jar` to the `libs` folder of your project.
 
-Then, add the following lines to your AndroidManifest.xml
+Then, add the following lines to your `AndroidManifest.xml`
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="xx"/>
     
@@ -14,7 +14,7 @@ Then, add the following lines to your AndroidManifest.xml
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-Where 'xx' is the actual target version of your app
+Where `xx` is the actual target version of your app
 	
 For Android version < 4.1, add these permissions
 
@@ -22,7 +22,7 @@ For Android version < 4.1, add these permissions
     <permission android:name="com.mycompany.myproject.permission.C2D_MESSAGE" android:protectionLevel="signature" />
     <uses-permission android:name="com.mycompany.myproject.permission.C2D_MESSAGE" />
     
-Where com.mycompany.myproject is your app's namespace
+Where `com.mycompany.myproject` is your app's namespace
    
 Allow your app to receive notifications
     
@@ -54,7 +54,18 @@ And in the same file, inside your `<application>` element, add a receiver:
         
         <receiver android:name="com.mycompany.myproject.receivers.IntentReceiver" />
 
-Where com.mycompany.myproject is of course the namespace of your app
+Where `com.mycompany.myproject` is of course the namespace of your app
+
+Then, add your keys and secrets to your app in the `notificareconfig.properties` file in your `assets` folder:
+
+	developmentApplicationKey = xxx
+	developmentApplicationSecret = xxx
+	productionApplicationKey = xxx
+	productionApplicationSecret = xxx
+	gcmSender = 123456789
+	production = false
+	
+You can get your keys / secrets from the Notificare Dashboard, the GCM sender key is the Project Number that was generated in your Google API Console when you added the project there.
 
 ## Handling registrations and push notifications
 
@@ -90,3 +101,4 @@ Create a class com.mycompany.myproject.receivers.IntentReceiver
 				}
 			}	
 	}
+	
