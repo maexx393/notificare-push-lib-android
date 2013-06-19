@@ -102,3 +102,25 @@ Create a class com.mycompany.myproject.receivers.IntentReceiver
 			}	
 	}
 	
+Now, when your app launches, you will need to register that class to the Notificare library, and launch the system. So, e.g., in your Application.onCreate:
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		//Set our own class to handle incoming push messages.
+		Notificare.shared().setIntentReceiver(IntentReceiver.class);
+		Notificare.shared().launch(this);
+	}
+	
+Finally, you will have to tell Notificare to start receiving notifications. This can of course be done in the same onCreate method, however, you don't know who your user is at that point and whether he or she actually wants to receive notifications. Perhaps you want them to identify themselves first with their Facebook login. After that, you can store that user ID in your app's preferences and enable notifications. For example:
+
+	public void onIDLoaded(String userId) {
+		//Write ID to preferences
+		SharedPreferences.Editor editor = mPrefs.edit();
+		editor.putString("userId", userId);
+		editor.commit();
+	
+		Notificare.shared().enableNotifications();
+	}
+	
+At this point you should be able to receive notifications sent through both our dashboard or API.
