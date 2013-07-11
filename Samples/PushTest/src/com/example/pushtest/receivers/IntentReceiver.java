@@ -21,7 +21,6 @@ public class IntentReceiver extends BaseIntentReceiver {
         launch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         Notificare.shared().getApplicationContext().startActivity(launch);
-        Notificare.shared().
     }
 
     @Override
