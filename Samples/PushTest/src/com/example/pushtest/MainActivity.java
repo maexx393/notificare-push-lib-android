@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+/**
+ * Main Activity class. Doesn't actually do anything
+ * @author Joris Verbogt <joris@notifica.re>
+ */
 public class MainActivity extends Activity {
 
 	@Override
