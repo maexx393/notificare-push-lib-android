@@ -4,11 +4,11 @@ import re.notifica.Notificare;
 import re.notifica.NotificareCallback;
 import re.notifica.NotificareError;
 import re.notifica.push.gcm.BaseIntentReceiver;
+import re.notifica.ui.NotificationActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
-
-import com.example.pushtest.MainActivity;
 
 /**
  * Intent receiver for Notificare intents. 
@@ -21,21 +21,23 @@ public class IntentReceiver extends BaseIntentReceiver {
 
 	@Override
     public void onNotificationReceived(String alert, String notificationId, Bundle extras) {
-            onNotificationOpened(alert, notificationId, extras);
     }
 
     @Override
     public void onNotificationOpened(String alert, String notificationId, Bundle extras) {
-        Intent launch = new Intent(Intent.ACTION_MAIN);
-        launch.setClass(Notificare.shared().getApplicationContext(), MainActivity.class);
-        launch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        Notificare.shared().getApplicationContext().startActivity(launch);
+		Intent notificationIntent = new Intent()
+			.setClass(Notificare.shared().getApplicationContext(), NotificationActivity.class)
+			.setAction(Notificare.INTENT_ACTION_NOTIFICATION_OPENED)
+			.putExtras(extras)
+			.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		TaskStackBuilder backStack = TaskStackBuilder.create(Notificare.shared().getApplicationContext());
+		backStack.addNextIntentWithParentStack(notificationIntent);
+		backStack.startActivities();
     }
 
     @Override
     public void onRegistrationFinished(String deviceId) {
-            Notificare.shared().registerDevice(deviceId, new NotificareCallback<String>() {
+            Notificare.shared().registerDevice(deviceId, "testuser@notifica.re", "Test User", new NotificareCallback<String>() {
 
 				@Override
 				public void onSuccess(String result) {

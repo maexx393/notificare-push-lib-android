@@ -18,7 +18,9 @@ public class MyApplication extends Application {
 		// Launch Notificare system
 	    Notificare.shared().launch(this);
 		//Set our own class to handle incoming push messages.
+	    Notificare.shared().setNotificationLayout(R.layout.notification);
 	    Notificare.shared().setIntentReceiver(IntentReceiver.class);
+	    Notificare.shared().setAutoCancel(false);
 	    // Enable this device for push notifications
 	    Notificare.shared().enableNotifications();
 	}
