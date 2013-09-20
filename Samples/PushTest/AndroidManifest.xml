@@ -26,29 +26,23 @@
 <uses-permission android:name="com.example.pushtest.permission.C2D_MESSAGE" />
 
     <application
-        android:name="com.example.pushtest.MyApplication"
+        android:name="re.notifica.push.gcm.BaseApplication"
         android:allowBackup="true"
         android:allowClearUserData="true"
         android:enabled="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light" >
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.pushtest.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
-            android:name="re.notifica.ui.NotificationActivity" 
-            android:uiOptions="splitActionBarWhenNarrow" >
-            <meta-data 
-                android:name="android.support.UI_OPTIONS"
-                android:value="splitActionBarWhenNarrow" />
-        </activity>
-        
+        <activity android:name="re.notifica.ui.NotificationActivity" />
         
         <!--
 	      BroadcastReceiver that will receive intents from GCM
@@ -71,7 +65,8 @@
 	    <service android:name="re.notifica.push.gcm.PushService"
 	        android:label="Notificare Push Service" />
 	 
-	    <receiver android:name="com.example.pushtest.receivers.IntentReceiver" />
+	    <receiver android:name="re.notifica.push.gcm.DefaultIntentReceiver" 
+	        android:permission="re.notifica.permission.SEND" />
 	    <meta-data 
 	        android:name="com.google.android.maps.v2.API_KEY" 
 	        android:value="AIzaSyChWw_ZlJpTgD7kE-fRtSfdkE8o1hMxwk0" />
