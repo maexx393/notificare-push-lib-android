@@ -21,10 +21,17 @@
     <!-- This app has permission to register and receive message -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-<!-- PERMISSIONS REQUIRED for C2DM  -->
-<permission android:name="com.example.pushtest.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-<uses-permission android:name="com.example.pushtest.permission.C2D_MESSAGE" />
+	<!-- 
+		PERMISSIONS REQUIRED for Google Cloud Messaging  
+		Please replace "com.example.pushtest" with your own package name
+	-->
+	<permission android:name="com.example.pushtest.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="com.example.pushtest.permission.C2D_MESSAGE" />
 
+	<!--
+		Your application. By default, the BaseApplication class registers the device
+		with GCM, and logs application usage with the Notificare API.
+	 -->
     <application
         android:name="re.notifica.push.gcm.BaseApplication"
         android:allowBackup="true"
@@ -42,11 +49,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="re.notifica.ui.NotificationActivity" />
         
         <!--
 	      BroadcastReceiver that will receive intents from GCM
-	      services and handle them to the custom IntentService.
+	      services and handle them to your app's IntentService.
 	 
 	      The com.google.android.c2dm.permission.SEND permission is necessary
 	      so only GCM services can send data messages for the app.
@@ -59,17 +65,40 @@
 	            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 	            <!-- Receives the registration id. -->
 	            <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+	            <!-- Replace with your package name -->
 	            <category android:name="com.example.pushtest" />
 	        </intent-filter>
 	    </receiver>
+	    <!--
+	    	Service running in the background that receives your Push Notifications 
+	     -->
 	    <service android:name="re.notifica.push.gcm.PushService"
 	        android:label="Notificare Push Service" />
 	 
+	    <!--
+	    	Receiver to dispatch GCM registration, push notifications and custom push actions.
+	    	By default, it will register the device as an anonymous user, launch the default 
+	    	Notification activity declared below when receiving notifications, and will 
+	    	launch your main activity with a "custom action" intent when a user selected 
+	    	a custom push action.
+	    	 
+	    	Most likely you will need customized registration and dispatching; please override 
+	    	this class or the BaseIntentReceiver parent class.
+	     -->
 	    <receiver android:name="re.notifica.push.gcm.DefaultIntentReceiver" 
 	        android:permission="re.notifica.permission.SEND" />
+
+	    <!--
+        	Notificare activity that will take care of displaying and handling notifications
+        	The default activity will take care of everything, please implement your own
+        	activity if you want to handle all user interaction yourself. 
+         -->
+        <activity android:name="re.notifica.ui.NotificationActivity" />
+	    	    
+	    <!-- API key for Google Maps -->
 	    <meta-data 
 	        android:name="com.google.android.maps.v2.API_KEY" 
-	        android:value="AIzaSyChWw_ZlJpTgD7kE-fRtSfdkE8o1hMxwk0" />
+	        android:value="COPY GOOGLE MAPS KEY FROM GOOGLE API CONSOLE" />
     </application>
 
 </manifest>
