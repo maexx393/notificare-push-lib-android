@@ -85,8 +85,7 @@
 	    	Most likely you will need customized registration and dispatching; please override 
 	    	this class or the BaseIntentReceiver parent class.
 	     -->
-	    <receiver android:name="re.notifica.push.gcm.DefaultIntentReceiver" 
-	        android:permission="re.notifica.permission.SEND" />
+	    <receiver android:name="re.notifica.push.gcm.DefaultIntentReceiver" />
 
 	    <!--
         	Notificare activity that will take care of displaying and handling notifications
