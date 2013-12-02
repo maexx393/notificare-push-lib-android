@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="re.notifica"
-    android:versionCode="098"
-    android:versionName="1.0.0-RC1" >
-    <uses-sdk android:minSdkVersion="8" />
+    android:versionCode="0915"
+    android:versionName="1.0-RC9" >
+    <uses-sdk 
+        android:minSdkVersion="8" 
+        android:targetSdkVersion="19" />
 </manifest>
