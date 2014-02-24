@@ -1,7 +1,5 @@
 package com.example.pushme;
 
-import java.util.ArrayList;
-
 import re.notifica.Notificare;
 import re.notifica.NotificareCallback;
 import re.notifica.NotificareError;
