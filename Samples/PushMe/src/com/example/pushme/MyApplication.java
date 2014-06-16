@@ -1,7 +1,7 @@
 package com.example.pushme;
 
 import re.notifica.Notificare;
-import re.notifica.push.gcm.BaseApplication;
+import android.app.Application;
 
 /**
  * Customisation of the default application class
@@ -11,10 +11,11 @@ import re.notifica.push.gcm.BaseApplication;
  * 
  * @author Joris Verbogt <joris@notifica.re>
  */
-public class MyApplication extends BaseApplication {
+public class MyApplication extends Application {
 
 	@Override
 	public void onCreate() {
+		super.onCreate();
 		// Launch Notificare system
 	    Notificare.shared().launch(this);
 	    // Set our own intent receiver
