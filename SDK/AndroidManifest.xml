@@ -3,6 +3,6 @@
     android:versionCode="0915"
     android:versionName="1.0-RC9" >
     <uses-sdk 
-        android:minSdkVersion="8" 
-        android:targetSdkVersion="19" />
+        android:minSdkVersion="10" 
+        android:targetSdkVersion="20" />
 </manifest>
