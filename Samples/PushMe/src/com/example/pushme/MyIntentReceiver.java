@@ -5,8 +5,9 @@ import re.notifica.NotificareCallback;
 import re.notifica.NotificareError;
 import re.notifica.model.NotificareNotification;
 import re.notifica.push.gcm.DefaultIntentReceiver;
+import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 public class MyIntentReceiver extends DefaultIntentReceiver {
@@ -14,20 +15,10 @@ public class MyIntentReceiver extends DefaultIntentReceiver {
 	private static final String TAG = MyIntentReceiver.class.getSimpleName();
 
 	@Override
-	public void onNotificationReceived(String alert, String notificationId,
-			Bundle extras) {
-		// Execute default behavior, i.e., put notification in drawer
-		super.onNotificationReceived(alert, notificationId, extras);
-	}
-
-	@Override
-	public void onNotificationOpened(String alert, String notificationId,
-			Bundle extras) {
-		// Notification is in extras
-		NotificareNotification notification = extras.getParcelable(Notificare.INTENT_EXTRA_NOTIFICATION);
-		Log.d(TAG, "Notification was opened with type " + notification.getType());
-		// By default, open the NotificationActivity and let it handle the Notification
-		super.onNotificationOpened(alert, notificationId, extras);
+	public void onReady() {
+	    // Enable this device for push notifications
+	    Notificare.shared().enableNotifications();
+	    Notificare.shared().enableLocationUpdates();
 	}
 
 	@Override
@@ -56,5 +47,20 @@ public class MyIntentReceiver extends DefaultIntentReceiver {
 		// By default, pass the target as data URI to your main activity in a launch intent
 		super.onActionReceived(target);
 	}
+
+	@Override
+	protected void buildTaskStack(TaskStackBuilder stackBuilder,
+			Intent notificationIntent, NotificareNotification notification) {
+		// If notification contains a boolean "test" set to true, just launch the MainActivity
+		if (notification.getExtra().containsKey("test")) {
+			Intent launchIntent = new Intent(Notificare.shared().getApplicationContext(), MainActivity.class);
+			launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			stackBuilder.addNextIntentWithParentStack(launchIntent);
+		} else {
+			stackBuilder.addNextIntentWithParentStack(notificationIntent);
+		}
+	}
+	
+	
 	
 }

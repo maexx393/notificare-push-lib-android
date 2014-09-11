@@ -6,6 +6,7 @@
     <string name="notificare_action_title_intent_sms">Send SMS&#8230;</string>
     <string name="notificare_action_title_intent_telephone">Call number&#8230;</string>
     <string name="notificare_action_title_intent_passbook">Open pass&#8230;</string>
+    <string name="notificare_action_title_intent_more">More&#8230;</string>
     <string name="notificare_action_error_no_email_clients">No email client installed.</string>
     <string name="notificare_action_error_no_sms_clients">Can not send SMS.</string>
     <string name="notificare_action_error_no_dialer">Can not make a phone call.</string>

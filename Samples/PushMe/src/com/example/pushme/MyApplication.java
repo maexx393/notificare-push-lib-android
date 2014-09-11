@@ -20,9 +20,6 @@ public class MyApplication extends Application {
 	    Notificare.shared().launch(this);
 	    // Set our own intent receiver
 	    Notificare.shared().setIntentReceiver(MyIntentReceiver.class);
-	    // Enable this device for push notifications
-	    Notificare.shared().enableNotifications();
-	    Notificare.shared().enableLocationUpdates();
 	}
 
 }

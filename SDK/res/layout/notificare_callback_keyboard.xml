@@ -9,7 +9,7 @@
 
 	<ScrollView
 		android:layout_width="fill_parent"
-		android:layout_height="255dp"
+		android:layout_height="200dp"
 		android:background="#FFFFFF" >
 		
 		<EditText 
@@ -17,7 +17,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:padding="5dp"
-			android:hint="@string/notificare_text_message_hint" >
+			android:hint="@string/notificare_text_message_hint">
 		</EditText>
 	</ScrollView>
 	

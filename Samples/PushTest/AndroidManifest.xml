@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="19" /> 
+        android:minSdkVersion="10"
+        android:targetSdkVersion="20" /> 
         
     <!-- PERMISSIONS -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -86,13 +86,32 @@
 	     -->
 	    <receiver android:name="re.notifica.push.gcm.DefaultIntentReceiver" />
 
-	    <!--
-        	Notificare activity that will take care of displaying and handling notifications
-        	The default activity will take care of everything, please implement your own
-        	activity if you want to handle all user interaction yourself. 
-         -->
-        <activity android:name="re.notifica.ui.NotificationActivity" />
 	    	    
+        <!--
+                Notificare activity that will take care of displaying and handling notifications
+                The default activity will take care of everything, please implement your own
+                activity if you want to handle all user interaction yourself.
+        -->
+        <!--
+                Shows the notification on top of a backstack with the app MainActivity
+        -->
+        <activity
+            android:name="re.notifica.ui.NotificationActivity"
+            android:parentActivityName=".MainActivity">
+                <meta-data
+                        android:name="android.support.PARENT_ACTIVITY"
+                        android:value=".MainActivity"/>
+        </activity>
+        <!--
+                Shows the notification activity in a separate task
+        -->
+	<!--
+        <activity
+            android:name="re.notifica.ui.NotificationActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity="" />
+	-->
+
 	    <!-- API key for Google Maps -->
 	    <meta-data
             android:name="com.google.android.gms.version"
