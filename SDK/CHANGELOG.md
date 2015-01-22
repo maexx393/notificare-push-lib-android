@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.3.1	(2015-01-22)
+- launch now keeps retrying to load config soon connectivity becomes available
+- notification opens are now logged from NotificationActivity or after action is taken from the Notification Manager, if notifications are opened through custom activities, those activities will have to call getEventLogger().logOpenNotification themselves 
+- removed UserSegment events, will be available through Notificare Live API
+
 1.3.0   (2015-01-08)
 - prevent compatibility issue with Android Wear
 - add region and beacon session
