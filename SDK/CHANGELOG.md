@@ -1,6 +1,19 @@
 Changelog
 =========
 
+## 1.4.0
+
+- Let OS handle all URLs in WebView
+- Update AndroidBeaconLibrary to 2.1 
+- Added multiple beacon sessions, for overlapping regions
+- Changed update intervals on geofences 
+- Added customizable small icon, use setSmallIcon() to change it from default application icon
+- Retry API requests
+- Clear entered beacon regions
+- Save registered device to shared preferences, so API calls are only done when needed, even after restart
+- Save already entered beacons to shared preferences, so even after restart enters are not triggered
+- Save already entered geofences to shared preferences, so even after restart enters are not triggered
+
 ## 1.3.2	(2015-01-22)
 
 - only make one fetchApplicationInfo request at once
