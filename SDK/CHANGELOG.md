@@ -1,6 +1,14 @@
 Changelog
 =========
 
+## 1.4.1
+
+Added lights settings to be read from incoming notifications
+Added default settings specific for Android (currently only lights)
+Added preference setting for enabled/disabled notifications, apps should check with isNotificationsEnabled() in onReady callback
+Fixed compatibility issue with latest V7AppCompat
+Updated to Gradle build tools 1.1.3, Android build tools 22.0.1, Android SDK 22, GooglePlayServices 7.0.0, V7AppCompat 22.0.0, AltBeacon 2.1.4 
+
 ## 1.4.0
 
 - Let OS handle all URLs in WebView

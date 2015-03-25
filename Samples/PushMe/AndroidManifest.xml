@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pushme"
-    android:versionCode="10101"
-    android:versionName="1.1.1" >
+    android:versionCode="10401"
+    android:versionName="1.4.1" >
 
     <uses-sdk
         android:minSdkVersion="10"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="22" />
 
     <!-- PERMISSIONS -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
