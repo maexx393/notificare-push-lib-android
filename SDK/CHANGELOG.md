@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 1.4.2
+
+Fixed concurrency issue in Connectivity listener that could lead to crashes
+
 ## 1.4.1
 
 Added lights settings to be read from incoming notifications
