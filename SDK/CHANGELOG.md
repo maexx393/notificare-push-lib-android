@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## 1.4.3
+
+Set previously registered deviceId at start
+Replace some RuntimeExceptions with warnings
+Check for applicationInfo before passing onReady intent
+Log spurious ready intents in BaseIntentReceiver
+
 ## 1.4.2
 
 Fixed concurrency issue in Connectivity listener that could lead to crashes
